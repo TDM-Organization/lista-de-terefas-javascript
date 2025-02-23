@@ -17,6 +17,8 @@ body{
 
 .form{
     display: flex;
+    width: 100%;
+    justify-content: center;
     gap: 5px;
 }
 
@@ -58,7 +60,7 @@ transform: scale(1.03);
 }
 
 .conteudo{
-    width: 485px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -133,7 +135,9 @@ transform: scale(1.03);
 
 .formAtualizar{
     display: flex;
+    width: 95%;
     gap: 5px;
+    position: fixed;
 }
 
 .btnConfirmar{
@@ -151,3 +155,19 @@ transform: scale(1.03);
     background-color: rgb(195, 195, 195);
     transform: scale(1.05);
     }
+
+@media screen and (max-width: 425px){
+    .tituloTarefa{
+        max-width: 100px;
+    }
+}
+
+@media screen and (max-width: 768px){
+    #inputTarefa{
+        width: 95%;
+    }
+
+    .inputAtualizar{
+        width: 95%;
+    }
+}
