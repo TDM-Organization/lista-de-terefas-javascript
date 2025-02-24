@@ -1,20 +1,11 @@
-const inputTarefa = document.getElementById('inputTarefa');
 const btnCriarTarefa = document.querySelector('.btnCriarTarefa');
 const btnAtualizarTarefa = document.querySelector('.btnAtualizarTarefa');
 const conteudo = document.querySelector('.conteudo');
 const listaTarefas = ['Limpar a casa', 'Fazer site', 'Lavar o quintal', 'Trabalho de geografia', 'Trabalho de Português', 'Trabalho de filisofia', 'Trabalho de sociologia'];
-const formAtualizar = document.querySelector('.formAtualizar');
+const form = document.querySelector('.form');
 if (listaTarefas.length > 0) {
     CarregarTarefas();
 }
-
-btnCriarTarefa.addEventListener('click', () => {
-    if (inputTarefa.value != '' && btnCriarTarefa.textContent == 'Criar') {
-        AdicionarTarefa(inputTarefa.value);
-    }
-});
-
-
 
 function CarregarTarefas() {
     conteudo.innerHTML = '';
@@ -30,10 +21,12 @@ function CarregarTarefas() {
     })
 }
 
-function AdicionarTarefa(tarefa) {
-    listaTarefas.push(tarefa);
+function AdicionarTarefa() {
+    const inputTarefa = document.getElementById('inputTarefa');
+    listaTarefas.push(inputTarefa.value);
     CarregarTarefas();
-    Limpar()
+    Limpar();
+    CloseForm();
 }
 
 function ExcluirTarefa(position) {
@@ -46,16 +39,26 @@ function Atualizar(position) {
     if (inputAtualizar.value != '') {
         listaTarefas[position] = inputAtualizar.value;
         CarregarTarefas();
-        formAtualizar.innerHTML = '';
+        CloseForm();
     }
 }
 
 function AbrirFormAtualizar(position) {
-    formAtualizar.innerHTML = `
+    form.innerHTML = `
         <input type='text' class='inputAtualizar' placeholder='tarefa' value='${listaTarefas[position]}'>
         <button class='btnConfirmar' onclick='Atualizar(${position})'>Confirmar</button>`;
 }
 
+function AbrirFormCriar() {
+    form.innerHTML = `
+        <input type="text" name="" id="inputTarefa" placeholder="Nova tarefa">
+        <button class="btnCriarTarefa" onclick='AdicionarTarefa()'>Criar</button>`;
+}
+
 function Limpar() {
     inputTarefa.value = '';
+}
+
+function CloseForm(){
+    form.innerHTML = '';
 }
